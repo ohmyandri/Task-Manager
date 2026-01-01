@@ -1,14 +1,17 @@
 :root{
     /* COLORS: */
     --color-main: #00FFFF;
+    --color-main-lighter: #aaffff;
     /* Color black native */
     --color-black-bg: #1e2128;
     --color-gray-text: #bdc1ca;
     --color-gray-border: #323743;
 
-    --color-blue-background-border: rgba(13, 127, 242, 10%);
+    --color-blue-background: rgba(13, 127, 242, 10%);
     --color-blue-border: rgba(13, 127, 242, 50%);
     --color-blue-text: #0D7FF2;
+    
+    --color-danger: #E05252;
 
 }
 
@@ -100,4 +103,111 @@ button {
 button:active {
   transform: none;
 }
+
+.cardsSection{
+    padding-bottom: 2rem;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.grid{
+    overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.card{
+    min-width: 560px;
+    min-height: 300px;
+    color: var(--color-gray-text);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 15px 25px;
+    border-radius: 16px;
+    border: 1px solid var(--color-gray-border);
+    background-color: var(--color-black-bg);
+    color: white;
+}
+
+.card .cardHeader{
+    display: flex;
+    justify-content: right;
+}
+
+.card .status{
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--color-blue-text);
+    padding: 3px 12px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-blue-background);
+    border: 1px solid var(--color-blue-border);
+}
+
+.description{
+    font-size: 14px;
+    color: var(--color-gray-text);
+}
+
+.importantSection{
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dueSection{
+    color: var(--color-gray-text);
+    font-size: 14px;
+}
+
+.dueSection span{
+    font-size: 14px;
+}
+
+.priority{
+    color: var(--color-danger);
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 2px;
+    font-size: 12px;
+}
+
+.progressBar{
+    --progress: 60%; 
+  
+    background: linear-gradient(
+        to right, 
+        var(--color-main) 0%, 
+        var(--color-main) var(--progress), 
+        var(--color-main-lighter) var(--progress), 
+        var(--color-main-lighter) 100%
+    );
+
+    border-radius: 16px;
+    width: 100%;
+    height: 10px;
+    background-color: line;
+    margin-bottom: 1rem;
+}
+
+.cardProgress{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.topSection{
+    color: var(--color-gray-text);
+    display: flex;
+    justify-content: space-between;
+}
+
 
