@@ -108,6 +108,8 @@ formTask.addEventListener('submit', (e)=>{
     tasksArrayData.push(task);
     console.log(tasksArrayData);
 
+    // Submitting the card to display:
+    displayCards();
 
     //Closing the overlay modal
     closeModal();
@@ -126,4 +128,49 @@ function removeArrayActive(array){
 
 function removeElementActive(element){
     element.classList.remove("active")
+}
+
+const allTasksGrid = document.getElementById('allTasksGrid');
+
+function displayCards(){
+    for(i = 0; i < tasksArrayData.length; i++){
+        displaySingleCard(i);
+    }
+}
+
+function displaySingleCard(i){
+    allTasksGrid.innerHTML += `
+        <div class="card" id="${tasksArrayData[i].id}">
+            <header class="cardHeader">
+                <div class="status">${tasksArrayData[i].status}</div>
+            </header>
+
+            <h3>${tasksArrayData[i].title}</h3>
+            
+            <p class="description">
+                ${tasksArrayData[i].description}
+            </p>
+
+            <div class="importantSection">
+                <div class="dueSection">
+                    <span class="material-symbols-outlined">calendar_today</span>
+                    <time datetime="${tasksArrayData[i].dueDate}">Due: ${tasksArrayData[i].dueDate}</time>
+                </div>
+                
+                <div class="priority">
+                    <span class="material-symbols-outlined">flag</span>
+                    <p>${tasksArrayData[i].priority}</p>
+                </div>
+            </div>
+            
+            <footer class="cardProgress">
+                <div class="topSection">
+                    <p class="caption">Progress</p>
+                    <p class="progressPercentage">${tasksArrayData[i].percentage}%</p>
+                </div>
+                
+                <div class="progressBar" style="--progress: ${tasksArrayData[i].percentage}%"></div>
+            </footer>
+        </div>
+    `;
 }
