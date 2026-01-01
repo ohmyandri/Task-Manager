@@ -133,19 +133,23 @@ button:active {
 }
 
 .grid{
+    scrollbar-width: none;
     overflow: auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1rem;
 }
 
 .card{
     cursor: pointer;
-    min-width: 560px;
-    min-height: 300px;
+    min-width: 216px;
+    min-height: 364px;
+    max-width: 560px;
+    width: 100%;
     color: var(--color-gray-text);
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     gap: 1rem;
     padding: 15px 25px;
     border-radius: 16px;
@@ -195,7 +199,7 @@ button:active {
 }
 
 .priority{
-    color: var(--color-danger);
+    color: var(--color-gray-text);
     display: flex;
     align-items: center;
     justify-content: right;
@@ -203,8 +207,20 @@ button:active {
     font-size: 12px;
 }
 
+.priority.Low{
+    color: var(--color-gray-text);
+}
+
+.priority.Medium{
+    color: var(--color-yellow-text);
+}
+
+.priority.High{
+    color: var(--color-danger);
+}
+
 .progressBar{
-    --progress: 60%; 
+    --progress: 50%; 
   
     background: linear-gradient(
         to right, 
@@ -328,7 +344,7 @@ button:active {
 }
 
 
-.selector .statusButton{
+.statusButton{
     transition: box-shadow 0.3s ease-out;
     box-shadow: none;
     border-radius: 16px;
@@ -350,19 +366,19 @@ button:active {
     opacity: 1.1;
 }
 
-#pendingStatus{
+.statusButton.pendingStatus{
     background-color: var(--color-gray-background);
     border: 1px solid var(--color-gray-border);
     color: var(--color-gray-text);
 }
 
-#inProgressStatus{
+.statusButton.inProgressStatus{
     background-color: var(--color-blue-background);
     border: 1px solid var(--color-blue-border);
     color: var(--color-blue-text);
 }
 
-#completedStatus{
+.statusButton.completedStatus{
     background-color: var(--color-green-background);
     border: 1px solid var(--color-green-border);
     color: var(--color-green-text);
@@ -397,19 +413,19 @@ button:active {
     opacity: 1.1;
 }
 
-#lowPriority{
+.selector .priorityButton.lowPriority{
     background-color: var(--color-gray-background);
     border: 1px solid var(--color-gray-border);
     color: var(--color-gray-text);
 }
 
-#mediumPriority{
+.selector .priorityButton.mediumPriority{
     background-color: var(--color-yellow-background);
     border: 1px solid var(--color-yellow-border);
     color: var(--color-yellow-text);
 }
 
-#highPriority{
+.selector .priorityButton.highPriority{
     background-color: var(--color-red-background);
     border: 1px solid var(--color-red-border);
     color: var(--color-red-text);
@@ -439,3 +455,4 @@ button:active {
 .formActions button:active{
     background-color: var(--color-main-lighter);
 }
+

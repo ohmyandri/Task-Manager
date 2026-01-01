@@ -81,6 +81,7 @@ function resetForm(){
 }
 
 //Getting the form info
+const allTasksGrid = document.getElementById('allTasksGrid');
 formTask.addEventListener('submit', (e)=>{
     e.preventDefault();
 
@@ -88,6 +89,8 @@ formTask.addEventListener('submit', (e)=>{
     const description = document.getElementById('descriptionInput').value;
     const dueDate = document.getElementById('dueDateInput').value;
     const status = document.querySelector('.statusButton.active').textContent;
+    const statusStyle = document.querySelector('.statusButton.active').classList;
+    statusStyle.remove('active');
     const priority = document.querySelector('.priorityButton.active').textContent;
     const percentage = document.getElementById('percentageInput').value;
 
@@ -98,6 +101,7 @@ formTask.addEventListener('submit', (e)=>{
         description,
         dueDate,
         status,
+        statusStyle,
         priority,
         percentage: Number(percentage)
     }
@@ -109,7 +113,7 @@ formTask.addEventListener('submit', (e)=>{
     console.log(tasksArrayData);
 
     // Submitting the card to display:
-    displayCards();
+    displayCards(tasksArrayData, allTasksGrid);
 
     //Closing the overlay modal
     closeModal();
@@ -130,47 +134,45 @@ function removeElementActive(element){
     element.classList.remove("active")
 }
 
-const allTasksGrid = document.getElementById('allTasksGrid');
+//Function to display cards
+function displayCards(tasksToDisplay, gridToDisplay){
+    //First i have to reset the wholle innerhtml dont i?
+    gridToDisplay.innerHTML = '';
 
-function displayCards(){
-    for(i = 0; i < tasksArrayData.length; i++){
-        displaySingleCard(i);
-    }
-}
-
-function displaySingleCard(i){
-    allTasksGrid.innerHTML += `
-        <div class="card" id="${tasksArrayData[i].id}">
+    for(i = 0; i < tasksToDisplay.length; i++){
+        gridToDisplay.innerHTML += `
+        <div class="card" id="${tasksToDisplay[i].id}">
             <header class="cardHeader">
-                <div class="status">${tasksArrayData[i].status}</div>
+                <button type="button" class="statusButton ${tasksToDisplay[i].statusStyle}">${tasksToDisplay[i].status}</button>
             </header>
 
-            <h3>${tasksArrayData[i].title}</h3>
+            <h3>${tasksToDisplay[i].title}</h3>
             
             <p class="description">
-                ${tasksArrayData[i].description}
+                ${tasksToDisplay[i].description}
             </p>
 
             <div class="importantSection">
                 <div class="dueSection">
                     <span class="material-symbols-outlined">calendar_today</span>
-                    <time datetime="${tasksArrayData[i].dueDate}">Due: ${tasksArrayData[i].dueDate}</time>
+                    <time datetime="${tasksToDisplay[i].dueDate}">Due: ${tasksToDisplay[i].dueDate}</time>
                 </div>
                 
-                <div class="priority">
+                <div class="priority ${tasksToDisplay[i].priority}">
                     <span class="material-symbols-outlined">flag</span>
-                    <p>${tasksArrayData[i].priority}</p>
+                    <p>${tasksToDisplay[i].priority}</p>
                 </div>
             </div>
             
             <footer class="cardProgress">
                 <div class="topSection">
                     <p class="caption">Progress</p>
-                    <p class="progressPercentage">${tasksArrayData[i].percentage}%</p>
+                    <p class="progressPercentage">${tasksToDisplay[i].percentage}%</p>
                 </div>
                 
-                <div class="progressBar" style="--progress: ${tasksArrayData[i].percentage}%"></div>
+                <div class="progressBar" style="--progress: ${tasksToDisplay[i].percentage}%"></div>
             </footer>
         </div>
     `;
+    }
 }

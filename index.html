@@ -42,7 +42,37 @@
 
             <section class="cardsSection">
                 <div class="grid" id="allTasksGrid">
-                    
+                    <!-- <div class="card">
+                            <header class="cardHeader">
+                                <button type="button" class="statusButton inProgressStatus">In Progress</button>
+                            </header>
+
+                            <h3>Task Title</h3>
+                            
+                            <p class="description">
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis velit suscipit ab blanditiis veniam voluptatum officiis numquam doloribus omnis accusamus, obcaecati asperiores eaque corporis commodi mollitia exercitationem cum tempore repellendus.
+                            </p>
+
+                            <div class="importantSection">
+                                <div class="dueSection">
+                                    <span class="material-symbols-outlined">calendar_today</span>
+                                    <time datetime="2025-12-31">Due: 2025-12-31</time>
+                                </div>
+                                
+                                <div class="priority Low">
+                                    <span class="material-symbols-outlined">flag</span>
+                                    <p>Low</p>
+                                </div>
+                            </div>
+                            
+                            <footer class="cardProgress">
+                                <div class="topSection">
+                                    <p class="caption">Progress</p>
+                                    <p class="progressPercentage">60%</p>
+                                </div>
+                                <div class="progressBar"></div>
+                            </footer>
+                    </div>    -->
                 </div>
             </section>
         </section>
@@ -76,21 +106,21 @@
 
                     <div class="inputGroup">
                         <div class="selector">
-                            <button type="button" class="statusButton" id="pendingStatus">Pending</button>
+                            <button type="button" class="pendingStatus statusButton" id="pendingStatus">Pending</button>
 
-                            <button type="button" class="statusButton active" id="inProgressStatus">In Progress</button>
+                            <button type="button" class="inProgressStatus statusButton active" id="inProgressStatus">In Progress</button>
 
-                            <button type="button" class="statusButton" id="completedStatus">Completed</button>
+                            <button type="button" class="completedStatus statusButton" id="completedStatus">Completed</button>
                         </div>
                     </div>
 
                     <div class="inputGroup">
                         <div class="selector">
-                            <button type="button" class="priorityButton" id="lowPriority">Low</button>
+                            <button type="button" class="priorityButton lowPriority" id="lowPriority">Low</button>
 
-                            <button type="button" class="priorityButton active" id="mediumPriority">Medium</button>
+                            <button type="button" class="priorityButton mediumPriority active" id="mediumPriority">Medium</button>
 
-                            <button type="button" class="priorityButton" id="highPriority">High</button>
+                            <button type="button" class="priorityButton highPriority" id="highPriority">High</button>
                         </div>
                     </div>
 
@@ -108,6 +138,11 @@
                 </form>
             </div>
         </section>
+
+        <section class="overlay">
+            
+        </section>
+
         <script src="script.js"></script>
 </body>
 </html>
