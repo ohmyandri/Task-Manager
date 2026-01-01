@@ -1,0 +1,103 @@
+:root{
+    /* COLORS: */
+    --color-main: #00FFFF;
+    /* Color black native */
+    --color-black-bg: #1e2128;
+    --color-gray-text: #bdc1ca;
+    --color-gray-border: #323743;
+
+    --color-blue-background-border: rgba(13, 127, 242, 10%);
+    --color-blue-border: rgba(13, 127, 242, 50%);
+    --color-blue-text: #0D7FF2;
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+body{
+    background-color: black;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+nav{
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-gray-border);
+}
+
+.logo{
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    width: 36px;
+    height: 36px;
+    background-color: var(--color-main);
+}
+
+.logo span{
+    padding: 1rem;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    height: 100%;
+    padding: 3rem;
+}
+
+.searchBar{
+    justify-content: left;
+}
+
+.searchBar input {
+    width: 100%;
+    border: 1px solid var(--color-gray-border);
+    background-color: var(--color-black-bg);
+    border-radius: 16px;
+    padding: 1rem;
+}
+
+.filterSelector{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filterSelector .filterButton{
+    font-weight: bold;
+    transition: all 0.3s ease-out;
+    color: white;
+    background-color: var(--color-black-bg);
+    cursor: pointer;
+    border: 1px solid var(--color-gray-border);
+    border-radius: 16px;
+    min-width: 73px;
+    padding: 6px 12px;
+}
+
+.filterButton.active{
+    transition: all 0.3s ease-in;
+    background-color: var(--color-main);
+    color: black;
+}
+
+button {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+button:active {
+  transform: none;
+}
+
