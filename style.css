@@ -5,13 +5,35 @@
     /* Color black native */
     --color-black-bg: #1e2128;
     --color-gray-text: #bdc1ca;
+    --color-gray-bg: #9da1aa;
     --color-gray-border: #323743;
 
     --color-blue-background: rgba(13, 127, 242, 10%);
     --color-blue-border: rgba(13, 127, 242, 50%);
     --color-blue-text: #0D7FF2;
     
+    /* Verde (Success / Low Priority) */
+    --color-green-background: rgba(34, 197, 94, 0.1);
+    --color-green-border: rgba(34, 197, 94, 0.5);
+    --color-green-text: #22C55E;
+
+    /* Rojo (Danger / High Priority) */
+    --color-red-background: rgba(239, 68, 68, 0.1);
+    --color-red-border: rgba(239, 68, 68, 0.5);
+    --color-red-text: #EF4444;
     --color-danger: #E05252;
+
+    /* Amarillo (Warning / Medium Priority) */
+    --color-yellow-background: rgba(234, 179, 8, 0.1);
+    --color-yellow-border: rgba(234, 179, 8, 0.5);
+    --color-yellow-text: #EAB308;
+
+
+    /* Gray */
+    --color-gray-background: rgba(156, 163, 175, 0.1);
+    --color-gray-border-tag: rgba(156, 163, 175, 0.5);
+    --color-gray-text: #9CA3AF;
+
 
 }
 
@@ -118,6 +140,7 @@ button:active {
 }
 
 .card{
+    cursor: pointer;
     min-width: 560px;
     min-height: 300px;
     color: var(--color-gray-text);
@@ -210,4 +233,209 @@ button:active {
     justify-content: space-between;
 }
 
+#newTaskButton{
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-main);
+    color: black;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+}
 
+
+#newTaskButton:hover{
+    opacity: 0.9;
+}
+
+#newTaskButton:active{
+    opacity: 1.1;
+}
+
+.overlay{
+    z-index: 9999;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(50, 55, 67, 0.1);
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 1s ease-out;
+
+    /* For centering the taskFormDiv */
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay .taskFormDiv{
+    position: relative;
+}
+
+.taskFormDiv span{
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.overlay.active{
+    transition: all 0.3s ease-in;
+    display: flex;
+}
+
+.overlay .taskFormDiv{
+    transition: all 0.3s ease-in;
+    border-radius: 16px;
+    background-color: var(--color-black-bg);
+    border: 1px solid var(--color-gray-border);
+    color: var(--color-gray-text);
+    padding: 2rem;
+}
+
+.taskFormDiv h1{
+    margin-bottom: 2rem;
+}
+
+.taskForm{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.taskForm textarea, .taskForm input, .taskForm button{
+    resize: none;
+    color: black;
+    background-color: var(--color-gray-bg);
+    border: 1px solid var(--color-gray-border);
+    border-radius: 16px;
+    padding: 10px;
+}
+
+.taskForm .inputGroup{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+.selector .statusButton{
+    transition: box-shadow 0.3s ease-out;
+    box-shadow: none;
+    border-radius: 16px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.selector .statusButton.active{
+    transition: box-shadow 0.3s ease-in;
+    box-shadow: 0 2px 6px white;
+}
+
+.selector .statusButton:hover{
+    opacity: 0.9;
+}
+
+.selector .statusButton:active{
+    opacity: 1.1;
+}
+
+#pendingStatus{
+    background-color: var(--color-gray-background);
+    border: 1px solid var(--color-gray-border);
+    color: var(--color-gray-text);
+}
+
+#inProgressStatus{
+    background-color: var(--color-blue-background);
+    border: 1px solid var(--color-blue-border);
+    color: var(--color-blue-text);
+}
+
+#completedStatus{
+    background-color: var(--color-green-background);
+    border: 1px solid var(--color-green-border);
+    color: var(--color-green-text);
+}
+
+.selector{
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.selector .priorityButton{
+    transition: box-shadow 0.3s ease-out;
+    box-shadow: none;
+    border-radius: 16px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.selector .priorityButton.active{
+    transition: box-shadow 0.3s ease-in;
+    box-shadow: 0 2px 6px white;
+}
+
+.selector .priorityButton:hover{
+    opacity: 0.9;
+}
+
+.selector .priorityButton:active{
+    opacity: 1.1;
+}
+
+#lowPriority{
+    background-color: var(--color-gray-background);
+    border: 1px solid var(--color-gray-border);
+    color: var(--color-gray-text);
+}
+
+#mediumPriority{
+    background-color: var(--color-yellow-background);
+    border: 1px solid var(--color-yellow-border);
+    color: var(--color-yellow-text);
+}
+
+#highPriority{
+    background-color: var(--color-red-background);
+    border: 1px solid var(--color-red-border);
+    color: var(--color-red-text);
+}
+
+.formActions{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.formActions .formButton{
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 16px;
+}
+
+.formActions .submitButton{
+    background-color: var(--color-main);
+}
+
+.formActions button:hover{
+    opacity: 0.9;
+}
+
+.formActions button:active{
+    background-color: var(--color-main-lighter);
+}

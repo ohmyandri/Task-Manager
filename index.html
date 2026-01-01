@@ -204,6 +204,68 @@
                 </div>
             </section>
         </section>
+
+        <div class="newTask">
+            <button type="button" id="newTaskButton">
+                <span class="material-symbols-outlined">add</span>
+            </button>
+        </div>
+        
+        <section id='overlay' class="overlay">
+            <div class="taskFormDiv">
+                <span class="material-symbols-outlined" id="closeOverlay">close</span>
+
+                <h1>Add new Task</h1>
+                <form name="taskFormName" action="" class="taskForm" id="taskFormId">
+                    <div class="inputGroup">
+                        <label for="titleInput">Title:</label>
+                        <input required type="text" id="titleInput">
+                    </div>
+                    
+                    <div class="inputGroup">
+                        <label for="descriptionInput">Description:</label>
+                        <textarea id="descriptionInput"></textarea>
+                    </div>
+                    
+                    <div class="inputGroup">
+                        <label for="dueDateInput">Due Date:</label>
+                        <input required type="date" id="dueDateInput">
+                    </div>
+
+                    <div class="inputGroup">
+                        <div class="selector">
+                            <button type="button" class="statusButton" id="pendingStatus">Pending</button>
+
+                            <button type="button" class="statusButton active" id="inProgressStatus">In Progress</button>
+
+                            <button type="button" class="statusButton" id="completedStatus">Completed</button>
+                        </div>
+                    </div>
+
+                    <div class="inputGroup">
+                        <div class="selector">
+                            <button type="button" class="priorityButton" id="lowPriority">Low</button>
+
+                            <button type="button" class="priorityButton active" id="mediumPriority">Medium</button>
+
+                            <button type="button" class="priorityButton" id="highPriority">High</button>
+                        </div>
+                    </div>
+
+                    <div class="inputGroup">
+                        <label for="percentageInput">Percentage:</label>
+                        <input min="0" max="100" type="number" id="percentageInput" value="0">
+                    </div>
+
+                    <div class="formActions">
+                        <button type="button" class="formButton resetButton" id="resetButton">Reset</button>
+
+                        <button class="formButton submitButton" id="submitButton">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </section>
         <script src="script.js"></script>
 </body>
 </html>
