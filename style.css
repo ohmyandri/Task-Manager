@@ -456,3 +456,8 @@ button:active {
 .formActions button:active{
     background-color: var(--color-main-lighter);
 }
+
+#searchInput{
+    color: var(--color-gray-text);
+    font-weight: bold;
+}
