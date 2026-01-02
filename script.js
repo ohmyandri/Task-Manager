@@ -6,8 +6,17 @@ filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         //Desactivating
         removeArrayActive(filterBtns);
+        //Adding Class Active
+        btn.classList.add("active");
 
-        btn.classList.add("active")
+        //Filtering the new Array
+        console.log(btn.textContent);
+        taskArrayFilter(btn.textContent);
+        console.log(filteredTasksArrayData);
+
+        //Changing to the new Section of Filtered Array
+        //Displaying the Filtered Tasks
+        displayCards(filteredTasksArrayData, allTasksGrid);
     })
 });
 
@@ -89,10 +98,15 @@ formTask.addEventListener('submit', (e)=>{
     const description = document.getElementById('descriptionInput').value;
     const dueDate = document.getElementById('dueDateInput').value;
     const status = document.querySelector('.statusButton.active').textContent;
+    //IF IS COMPLETED THEN THE PERCENTAGE SHOULD BE 100%
     const statusStyle = document.querySelector('.statusButton.active').classList;
     statusStyle.remove('active');
     const priority = document.querySelector('.priorityButton.active').textContent;
-    const percentage = document.getElementById('percentageInput').value;
+    let percentage = 0;
+    percentage = document.getElementById('percentageInput').value;
+    if (status == 'Completed'){
+        percentage = 100;
+    }
 
     //CREATING THE DATA:
     const task = {
@@ -106,18 +120,42 @@ formTask.addEventListener('submit', (e)=>{
         percentage: Number(percentage)
     }
 
-    console.log(task);
-
     //SUBMITTING THE TASK TO THE ARRAY OF TASKS
     tasksArrayData.push(task);
-    console.log(tasksArrayData);
+
+    //VERIFYING WHICH FILTER AM I ON:
+    const currentFilter = document.querySelector('.filterButton.active').textContent;
+
+    taskArrayFilter(currentFilter);
 
     // Submitting the card to display:
-    displayCards(tasksArrayData, allTasksGrid);
+    displayCards(filteredTasksArrayData, allTasksGrid);
 
     //Closing the overlay modal
     closeModal();
 });
+
+//FILTERED TASK
+//Filtered Tasks Grid to display at
+const filteredTasks = document.getElementById('filteredTasksGrid');
+//Filtered Tasks Array
+let filteredTasksArrayData = [];
+
+
+//FUNCTIONS
+
+// Function to filter the task:
+function taskArrayFilter(status){
+    //Filtering the tasks using the STATUS
+    if(status == 'All'){
+        filteredTasksArrayData = tasksArrayData;
+    }
+
+    //If not, we filter the data
+    else{
+        filteredTasksArrayData = tasksArrayData.filter(task => task.status === status);
+    }
+}
 
 function closeModal(){
     overlay.classList.remove('active')
