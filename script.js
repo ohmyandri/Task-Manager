@@ -69,7 +69,48 @@ const resetButton = document.getElementById('resetButton')
 const submitButton = document.getElementById('submitButton')
 
 //CREATING DATA STORAGER
-let tasksArrayData = [];
+let tasksArrayData = [
+    {
+        id: 1767368039973,
+        title: "Project Alpha",
+        description: "Complete the initial wireframes and documentation.",
+        dueDate: "2026-01-15",
+        percentage: 100,
+        priority: "High",
+        status: "Completed",
+        statusStyle: "completedStatus" // Using string for better compatibility
+    },
+    {
+        id: 1767368045000,
+        title: "Gym Session",
+        description: "Upper body workout at RIR 0-1.",
+        dueDate: "2026-01-02",
+        percentage: 50,
+        priority: "Medium",
+        status: "In Progress",
+        statusStyle: "inProgressStatus"
+    },
+    {
+        id: 1767368051000,
+        title: "Hair Care Routine",
+        description: "Apply Garnier Fructis Hair Food Cacao mask.",
+        dueDate: "2026-01-05",
+        percentage: 0,
+        priority: "Low",
+        status: "Pending",
+        statusStyle: "pendingStatus"
+    },
+    {
+        id: 1767368062000,
+        title: "Buy Groceries",
+        description: "Focus on high protein and low sodium items.",
+        dueDate: "2026-01-03",
+        percentage: 20,
+        priority: "High",
+        status: "In Progress",
+        statusStyle: "inProgressStatus"
+    }
+];
 
 //CREATING RESET BUTTON:
 resetButton.addEventListener('click', ()=>{
@@ -126,6 +167,9 @@ formTask.addEventListener('submit', (e)=>{
     //VERIFYING WHICH FILTER AM I ON:
     const currentFilter = document.querySelector('.filterButton.active').textContent;
 
+    //DEBUGGING 
+    console.log(task);
+
     taskArrayFilter(currentFilter);
 
     // Submitting the card to display:
@@ -141,6 +185,24 @@ const filteredTasks = document.getElementById('filteredTasksGrid');
 //Filtered Tasks Array
 let filteredTasksArrayData = [];
 
+//FILTERING WITH INPUT
+const searchInput = document.getElementById('searchInput')
+
+searchInput.addEventListener('input', (e) => {
+    e.preventDefault();
+
+    // Filtering
+    taskArraySearchFilter(e.target.value);
+
+    // Display it
+    displayCards(filteredTasksArrayData, allTasksGrid);
+});
+
+// Displaying Cards as soon as the windows reloads:
+window.addEventListener('DOMContentLoaded', () => {
+    // This ensures all HTML elements exist before running the function
+    displayCards(tasksArrayData, allTasksGrid);
+});
 
 //FUNCTIONS
 
@@ -154,6 +216,21 @@ function taskArrayFilter(status){
     //If not, we filter the data
     else{
         filteredTasksArrayData = tasksArrayData.filter(task => task.status === status);
+    }
+}
+
+// Function to filter by INPUT
+function taskArraySearchFilter(filter){
+    const term = filter.toLowerCase();
+    if(term == ''){
+        filteredTasksArrayData = tasksArrayData;
+    }
+
+    //If not, we filter the data
+    else{
+        filteredTasksArrayData = tasksArrayData.filter(task => 
+            task.title.toLowerCase().includes(term)
+        );
     }
 }
 
@@ -176,41 +253,47 @@ function removeElementActive(element){
 function displayCards(tasksToDisplay, gridToDisplay){
     //First i have to reset the wholle innerhtml dont i?
     gridToDisplay.innerHTML = '';
+    
+    if(tasksArrayData.length == 0){
+        alert("You don't have any Tasks!")
+    }
+    
+    else{
+        for(i = 0; i < tasksToDisplay.length; i++){
+            gridToDisplay.innerHTML += `
+            <div class="card" id="${tasksToDisplay[i].id}">
+                <header class="cardHeader">
+                    <button type="button" class="statusButton ${tasksToDisplay[i].statusStyle}">${tasksToDisplay[i].status}</button>
+                </header>
 
-    for(i = 0; i < tasksToDisplay.length; i++){
-        gridToDisplay.innerHTML += `
-        <div class="card" id="${tasksToDisplay[i].id}">
-            <header class="cardHeader">
-                <button type="button" class="statusButton ${tasksToDisplay[i].statusStyle}">${tasksToDisplay[i].status}</button>
-            </header>
+                <h3>${tasksToDisplay[i].title}</h3>
+                
+                <p class="description">
+                    ${tasksToDisplay[i].description}
+                </p>
 
-            <h3>${tasksToDisplay[i].title}</h3>
-            
-            <p class="description">
-                ${tasksToDisplay[i].description}
-            </p>
-
-            <div class="importantSection">
-                <div class="dueSection">
-                    <span class="material-symbols-outlined">calendar_today</span>
-                    <time datetime="${tasksToDisplay[i].dueDate}">Due: ${tasksToDisplay[i].dueDate}</time>
+                <div class="importantSection">
+                    <div class="dueSection">
+                        <span class="material-symbols-outlined">calendar_today</span>
+                        <time datetime="${tasksToDisplay[i].dueDate}">Due: ${tasksToDisplay[i].dueDate}</time>
+                    </div>
+                    
+                    <div class="priority ${tasksToDisplay[i].priority}">
+                        <span class="material-symbols-outlined">flag</span>
+                        <p>${tasksToDisplay[i].priority}</p>
+                    </div>
                 </div>
                 
-                <div class="priority ${tasksToDisplay[i].priority}">
-                    <span class="material-symbols-outlined">flag</span>
-                    <p>${tasksToDisplay[i].priority}</p>
-                </div>
+                <footer class="cardProgress">
+                    <div class="topSection">
+                        <p class="caption">Progress</p>
+                        <p class="progressPercentage">${tasksToDisplay[i].percentage}%</p>
+                    </div>
+                    
+                    <div class="progressBar" style="--progress: ${tasksToDisplay[i].percentage}%"></div>
+                </footer>
             </div>
-            
-            <footer class="cardProgress">
-                <div class="topSection">
-                    <p class="caption">Progress</p>
-                    <p class="progressPercentage">${tasksToDisplay[i].percentage}%</p>
-                </div>
-                
-                <div class="progressBar" style="--progress: ${tasksToDisplay[i].percentage}%"></div>
-            </footer>
-        </div>
-    `;
+        `;
+        }
     }
 }
