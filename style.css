@@ -150,6 +150,7 @@ button:active {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    justify-content: space-between;
     gap: 1rem;
     padding: 15px 25px;
     border-radius: 16px;
