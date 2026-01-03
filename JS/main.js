@@ -50,11 +50,13 @@ formTask.addEventListener('submit', (e)=>{
     const dueDate = document.getElementById('dueDateInput').value;
     let status = document.querySelector('.statusButton.active').textContent;
     //IF IS COMPLETED THEN THE PERCENTAGE SHOULD BE 100%
-    let statusStyle = document.querySelector('.statusButton.active').classList[1];
+    let statusStyle = document.querySelector('.statusButton.active').classList[0];
+    console.log(statusStyle);
     const priority = document.querySelector('.priorityButton.active').textContent;
     let percentage = 0;
     //If the percentage is 100%, then, the status should be Completed
     percentage = document.getElementById('percentageInput').value;
+
     if (status == 'Completed' || percentage == 100){
         percentage = 100;
         status = 'Completed';
