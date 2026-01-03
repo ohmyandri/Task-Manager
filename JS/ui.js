@@ -86,3 +86,12 @@ export function removeArrayActive(array){
 export function removeElementActive(element){
     element.classList.remove("active")
 }
+
+// Changer to the all Tasks section
+const filterBtns = document.querySelectorAll('.filterButton');
+export function changerToTheAllTasks(){
+    removeArrayActive(filterBtns);
+    filterBtns.forEach(btn => {
+        if(btn.textContent === 'All') btn.classList.add('active');
+    });
+}

@@ -1,7 +1,7 @@
 // Importing Functions
 import { TASKS_KEY} from './storage.js';
 import { saveArrayJS, tasksArrayData, filteredTasksArrayData, taskArrayFilter, taskArraySearchFilter } from './logic.js';
-import { displayCards, closeModal, resetForm, removeArrayActive } from './ui.js';
+import { changerToTheAllTasks ,displayCards, closeModal, resetForm, removeArrayActive } from './ui.js';
 
 const searchInput = document.getElementById('searchInput')
 const prioritySelector = document.querySelectorAll('.priorityButton')
@@ -51,7 +51,6 @@ formTask.addEventListener('submit', (e)=>{
     let status = document.querySelector('.statusButton.active').textContent;
     //IF IS COMPLETED THEN THE PERCENTAGE SHOULD BE 100%
     let statusStyle = document.querySelector('.statusButton.active').classList[0];
-    console.log(statusStyle);
     const priority = document.querySelector('.priorityButton.active').textContent;
     let percentage = 0;
     //If the percentage is 100%, then, the status should be Completed
@@ -78,12 +77,6 @@ formTask.addEventListener('submit', (e)=>{
     //SUBMITTING THE TASK TO THE JS ARRAY, SENDING THE DATA TO THE WEB-STORAGE:
     saveArrayJS(task);
 
-    //DEBUG
-    console.log(localStorage.getItem(TASKS_KEY))
-
-    console.log(JSON.parse(localStorage.getItem(TASKS_KEY)))
-    
-
     //VERIFYING WHICH FILTER AM I ON:
     const currentFilter = document.querySelector('.filterButton.active').textContent;
 
@@ -97,12 +90,15 @@ formTask.addEventListener('submit', (e)=>{
 });
 
 //FILTERING WITH INPUT
-
 searchInput.addEventListener('input', (e) => {
     e.preventDefault();
 
     // Filtering
     taskArraySearchFilter(e.target.value);
+
+
+    // CHANGING TO THE ALL TASKS SECTION
+    changerToTheAllTasks();
 
     // Display it
     displayCards(filteredTasksArrayData, allTasksGrid);
@@ -138,9 +134,7 @@ filterBtns.forEach(btn => {
         btn.classList.add("active");
 
         //Filtering the new Array
-        console.log(btn.textContent);
         taskArrayFilter(btn.textContent);
-        console.log(filteredTasksArrayData);
 
         //Changing to the new Section of Filtered Array
         //Displaying the Filtered Tasks
