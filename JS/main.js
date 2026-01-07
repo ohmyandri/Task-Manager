@@ -1,7 +1,7 @@
 // Importing Functions
 import { TASKS_KEY} from './storage.js';
 import { saveArrayJS, tasksArrayData, filteredTasksArrayData, taskArrayFilter, taskArraySearchFilter } from './logic.js';
-import { changerToTheAllTasks ,displayCards, closeModal, resetForm, removeArrayActive } from './ui.js';
+import { changerToTheAllTasks ,displayCards, closeModal, editCloseModal ,resetForm, removeArrayActive } from './ui.js';
 
 const searchInput = document.getElementById('searchInput')
 const prioritySelector = document.querySelectorAll('.priorityButton')
@@ -9,22 +9,46 @@ const allTasksGrid = document.getElementById('allTasksGrid');
 const resetButton = document.getElementById('resetButton')
 const filterBtns = document.querySelectorAll('.filterButton');
 const newTaskBtn = document.getElementById('newTaskButton');
-const overlay = document.getElementById('overlay')
+const overlay = document.getElementById('formOverlay')
+const editOverlay = document.getElementById('taskEditorOverlay')
 const closeButton = document.getElementById('closeOverlay');
+const editCloseButton = document.getElementById('closeEditOverlay');
 const formTask = document.getElementById('taskFormId');
 const statusSelector = document.querySelectorAll('.statusButton');
-
+const cardsArray = document.querySelectorAll(".card");
 // Listeners:
+
+//Add task
 newTaskBtn.addEventListener('click', () => {
     overlay.classList.add('active');
 });
 
+//Edit task
+allTasksGrid.addEventListener('click', (e) => {
+    const card = e.target.closest('.card');
+
+    //Getting the taskID from the ajam
+    const taskId = card.id;
+
+    const taskToEdit = tasksArrayData.find(task => task.id == taskId);
+
+    console.log(taskToEdit)
+    editOverlay.classList.add('active');
+});
+
+//Close Modal
 closeButton.addEventListener('click', () => {
     closeModal();
 });
 
+//Close edit modal
+editCloseButton.addEventListener('click', () => {
+    editCloseModal();
+});
+
+
+//Close MODALS
 overlay.addEventListener('click', (e) => {
-    const formTask = document.getElementById('taskFormId');
     if (e.target === overlay){
         closeModal();
     };
@@ -33,6 +57,18 @@ overlay.addEventListener('click', (e) => {
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
        closeModal();
+    }
+});
+
+editOverlay.addEventListener('click', (e) => {
+    if (e.target === editOverlay){
+        editCloseModal();
+    };
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+       editCloseModal();
     }
 });
 

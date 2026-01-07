@@ -84,11 +84,67 @@
             </button>
         </div>
         
-        <section id='overlay' class="overlay">
-            <div class="taskFormDiv">
+        <section id='formOverlay' class="overlay">
+            <div class="modalTask">
                 <span class="material-symbols-outlined" id="closeOverlay">close</span>
 
                 <h1>Add new Task</h1>
+                <form name="taskFormName" action="" class="taskForm" id="taskFormId">
+                    <div class="inputGroup">
+                        <label for="titleInput">Title:</label>
+                        <input required type="text" id="titleInput">
+                    </div>
+                    
+                    <div class="inputGroup">
+                        <label for="descriptionInput">Description:</label>
+                        <textarea id="descriptionInput"></textarea>
+                    </div>
+                    
+                    <div class="inputGroup">
+                        <label for="dueDateInput">Due Date:</label>
+                        <input required type="date" id="dueDateInput">
+                    </div>
+
+                    <div class="inputGroup">
+                        <div class="selector">
+                            <button type="button" class="pendingStatus statusButton" id="pendingStatus">Pending</button>
+
+                            <button type="button" class="inProgressStatus statusButton active" id="inProgressStatus">In Progress</button>
+
+                            <button type="button" class="completedStatus statusButton" id="completedStatus">Completed</button>
+                        </div>
+                    </div>
+
+                    <div class="inputGroup">
+                        <div class="selector">
+                            <button type="button" class="priorityButton lowPriority" id="lowPriority">Low</button>
+
+                            <button type="button" class="priorityButton mediumPriority active" id="mediumPriority">Medium</button>
+
+                            <button type="button" class="priorityButton highPriority" id="highPriority">High</button>
+                        </div>
+                    </div>
+
+                    <div class="inputGroup">
+                        <label for="percentageInput">Percentage:</label>
+                        <input min="0" max="100" type="number" id="percentageInput" value="0">
+                    </div>
+
+                    <div class="formActions">
+                        <button type="button" class="formButton resetButton" id="resetButton">Reset</button>
+
+                        <button class="formButton submitButton" id="submitButton">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </section>
+
+        <section id="taskEditorOverlay" class="overlay" >
+            <div class="modalTask">
+                <span class="material-symbols-outlined" id="closeEditOverlay">close</span>
+
+                <h1>Edit Task</h1>
                 <form name="taskFormName" action="" class="taskForm" id="taskFormId">
                     <div class="inputGroup">
                         <label for="titleInput">Title:</label>

@@ -1,7 +1,8 @@
 //THINGS THAT ILL USE:
 import { tasksArrayData } from './logic.js';
 
-const overlay = document.getElementById('overlay');
+const overlay = document.getElementById('formOverlay');
+const editOverlay = document.getElementById('taskEditorOverlay');
 const formTask = document.getElementById('taskFormId');
 const statusSelector = document.querySelectorAll('.statusButton');
 const prioritySelector = document.querySelectorAll('.priorityButton');
@@ -59,6 +60,10 @@ export function displayCards(tasksToDisplay, gridToDisplay){
 export function closeModal(){
     overlay.classList.remove('active')
     resetForm();
+}
+
+export function editCloseModal(){
+    editOverlay.classList.remove('active')
 }
 
 // Function to reset the form
