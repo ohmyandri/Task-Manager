@@ -48,6 +48,7 @@ editCloseButton.addEventListener('click', () => {
 
 
 //Close MODALS
+//Close New Task Modal
 overlay.addEventListener('click', (e) => {
     if (e.target === overlay){
         closeModal();
@@ -60,6 +61,7 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
+//Close Edit Modals
 editOverlay.addEventListener('click', (e) => {
     if (e.target === editOverlay){
         editCloseModal();
