@@ -461,3 +461,7 @@ button:active {
     color: var(--color-gray-text);
     font-weight: bold;
 }
+
+#hiddenTaskInput{
+    display: none;
+}

@@ -100,3 +100,21 @@ export function changerToTheAllTasks(){
         if(btn.textContent === 'All') btn.classList.add('active');
     });
 }
+
+//Function to get the data from an element, and display it into the Form
+export function displayTaskDetails(taskToEdit){
+    document.getElementById('titleEditInput').value = taskToEdit.title;
+    document.getElementById('descriptionEditInput').value = taskToEdit.description;
+    document.getElementById('dueDateEditInput').value = taskToEdit.dueDate;
+
+    //Deleting every active button for the status:
+    removeArrayActive(statusSelector); //Then adding active to the one selected in the card
+    const statusSelected = "." + taskToEdit.statusStyle;
+    editOverlay.querySelector(statusSelected).classList.add('active');
+    //Selecting the priority
+    const prioritySelected = "." + taskToEdit.priority.toLowerCase() + 'Priority';
+    //Marking active
+    editOverlay.querySelector(prioritySelected).classList.add('active');
+    //The percentage
+    document.getElementById('percentageEditInput').value = taskToEdit.percentage;
+}

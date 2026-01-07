@@ -1,7 +1,7 @@
 // Importing Functions
 import { TASKS_KEY} from './storage.js';
-import { saveArrayJS, tasksArrayData, filteredTasksArrayData, taskArrayFilter, taskArraySearchFilter } from './logic.js';
-import { changerToTheAllTasks ,displayCards, closeModal, editCloseModal ,resetForm, removeArrayActive } from './ui.js';
+import { saveArrayJS, editTaskArrayJS, tasksArrayData, filteredTasksArrayData, taskArrayFilter, taskArraySearchFilter } from './logic.js';
+import { changerToTheAllTasks ,displayCards, closeModal, editCloseModal ,resetForm, removeArrayActive, displayTaskDetails} from './ui.js';
 
 const searchInput = document.getElementById('searchInput')
 const prioritySelector = document.querySelectorAll('.priorityButton')
@@ -28,12 +28,21 @@ allTasksGrid.addEventListener('click', (e) => {
     const card = e.target.closest('.card');
 
     //Getting the taskID from the ajam
-    const taskId = card.id;
+    if(card){
+        const taskId = card.id;
+        const indexTaskToEdit = tasksArrayData.findIndex(task => task.id == taskId);
+        let taskToEdit = tasksArrayData[indexTaskToEdit];
 
-    const taskToEdit = tasksArrayData.find(task => task.id == taskId);
+        //We display the taskDetails
+        displayTaskDetails(taskToEdit)
+        //Adding the index to the hiddenInput:
+        document.getElementById('hiddenTaskInput').value = indexTaskToEdit;
 
-    console.log(taskToEdit)
-    editOverlay.classList.add('active');
+        //We Edit the task on the submit so no need to do something here:
+
+        //Displaying the modal/overlay
+        editOverlay.classList.add('active');
+    }
 });
 
 //Close Modal
@@ -125,6 +134,61 @@ formTask.addEventListener('submit', (e)=>{
 
     //Closing the overlay modal
     closeModal();
+});
+
+//Getting the Edit-Task form info
+const editTaskForm = document.getElementById('taskFormEditId');
+
+editTaskForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+
+    const title = document.getElementById('titleEditInput').value;
+    const description = document.getElementById('descriptionEditInput').value;
+    const dueDate = document.getElementById('dueDateEditInput').value;
+    let status = editOverlay.querySelector('.statusButton.active').textContent;
+    //IF IS COMPLETED THEN THE PERCENTAGE SHOULD BE 100%
+    let statusStyle = editOverlay.querySelector('.statusButton.active').classList[0];
+    const priority = editOverlay.querySelector('.priorityButton.active').textContent;
+    let percentage = 0;
+
+    //If the percentage is 100%, then, the status should be Completed
+    percentage = document.getElementById('percentageEditInput').value;
+
+    //Getting the index of the task!
+    const index = document.getElementById('hiddenTaskInput').value;
+
+
+    if (status == 'Completed' || percentage == 100){
+        percentage = 100;
+        status = 'Completed';
+        statusStyle = 'completedStatus';
+    }
+
+    //CREATING THE DATA:
+    const editedTask = {
+        id: Date.now(),
+        title,
+        description,
+        dueDate,
+        status,
+        statusStyle,
+        priority,
+        percentage: Number(percentage)
+    }
+
+    //SUBMITTING THE NEW EDITED TASK TO THE JS ARRAY, SENDING THE DATA TO THE WEB-STORAGE:
+    editTaskArrayJS(editedTask, index)
+
+    //VERIFYING WHICH FILTER AM I ON:
+    const currentFilter = document.querySelector('.filterButton.active').textContent;
+
+    taskArrayFilter(currentFilter);
+
+    // Submitting the card to display:
+    displayCards(filteredTasksArrayData, allTasksGrid);
+
+    //Closing the overlay modal
+    editCloseModal();
 });
 
 //FILTERING WITH INPUT

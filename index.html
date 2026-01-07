@@ -145,20 +145,22 @@
                 <span class="material-symbols-outlined" id="closeEditOverlay">close</span>
 
                 <h1>Edit Task</h1>
-                <form name="taskFormName" action="" class="taskForm" id="taskFormId">
+                <form name="taskFormName" action="" class="taskForm" id="taskFormEditId">
+                    <input type="text" readonly id="hiddenTaskInput">
+
                     <div class="inputGroup">
-                        <label for="titleInput">Title:</label>
-                        <input required type="text" id="titleInput">
+                        <label for="titleEditInput">Title:</label>
+                        <input required type="text" id="titleEditInput">
                     </div>
                     
                     <div class="inputGroup">
-                        <label for="descriptionInput">Description:</label>
-                        <textarea id="descriptionInput"></textarea>
+                        <label for="descriptionEditInput">Description:</label>
+                        <textarea id="descriptionEditInput"></textarea>
                     </div>
                     
                     <div class="inputGroup">
-                        <label for="dueDateInput">Due Date:</label>
-                        <input required type="date" id="dueDateInput">
+                        <label for="dueDateEditInput">Due Date:</label>
+                        <input required type="date" id="dueDateEditInput">
                     </div>
 
                     <div class="inputGroup">
@@ -182,8 +184,8 @@
                     </div>
 
                     <div class="inputGroup">
-                        <label for="percentageInput">Percentage:</label>
-                        <input min="0" max="100" type="number" id="percentageInput" value="0">
+                        <label for="percentageEditInput">Percentage:</label>
+                        <input min="0" max="100" type="number" id="percentageEditInput" value="0">
                     </div>
 
                     <div class="formActions">

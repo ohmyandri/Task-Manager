@@ -44,3 +44,9 @@ export function saveArrayJS(task){
     // NOW WE SEND THE DATA ONTO THE JSON
     saveData(tasksArrayData);
 }
+
+export function editTaskArrayJS(task, index){
+    tasksArrayData[index] = task;
+    // NOW WE SEND THE DATA ONTO THE JSON
+    saveData(tasksArrayData);
+}
