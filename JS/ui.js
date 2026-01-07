@@ -103,12 +103,16 @@ export function changerToTheAllTasks(){
 
 //Function to get the data from an element, and display it into the Form
 export function displayTaskDetails(taskToEdit){
+    //Selecting the status selector in the overlay to edit a task
+    const selectorActive = editOverlay.querySelectorAll('.statusButton, .priorityButton');
+    //Cleaning the status ONLY in the overlay to edit a task
+    removeArrayActive(selectorActive);
+
     document.getElementById('titleEditInput').value = taskToEdit.title;
     document.getElementById('descriptionEditInput').value = taskToEdit.description;
     document.getElementById('dueDateEditInput').value = taskToEdit.dueDate;
 
-    //Deleting every active button for the status:
-    removeArrayActive(statusSelector); //Then adding active to the one selected in the card
+    //Then adding active to the one selected in the card
     const statusSelected = "." + taskToEdit.statusStyle;
     editOverlay.querySelector(statusSelected).classList.add('active');
     //Selecting the priority
