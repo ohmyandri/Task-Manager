@@ -13,7 +13,7 @@ export function displayCards(tasksToDisplay, gridToDisplay){
     gridToDisplay.innerHTML = '';
     
     if(tasksArrayData.length == 0){
-        alert("You don't have any Tasks!")
+        //Later ill see what to do with this
     }
     
     else{
@@ -58,8 +58,8 @@ export function displayCards(tasksToDisplay, gridToDisplay){
 
 //Function to close the modal
 export function closeModal(){
-    overlay.classList.remove('active')
     resetForm();
+    overlay.classList.remove('active')
 }
 
 export function editCloseModal(){
@@ -68,13 +68,8 @@ export function editCloseModal(){
 
 // Function to reset the form
 export function resetForm(){
-    const currentForm = document.querySelector('.overlay.active .taskForm')
-
-    if (!currentForm) {
-        console.warn("No se pudo resetear: el formulario no existe.");
-        return;
-    }
-
+    //getting the current form
+    const currentForm = document.querySelector('.overlay.active .taskForm');
     //Saving hiddenInput!
     const hiddenIndex = document.getElementById('hiddenTaskInput').value;
 

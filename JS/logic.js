@@ -1,5 +1,6 @@
 //THINGS THAT ILL USE:
 import {getTasks, saveData} from './storage.js';
+import {closeModal, displayCards, editCloseModal} from './ui.js';
 
 
 // Getting the data back!
@@ -49,4 +50,14 @@ export function editTaskArrayJS(task, index){
     tasksArrayData[index] = task;
     // NOW WE SEND THE DATA ONTO THE JSON
     saveData(tasksArrayData);
+}
+
+export function deleteTaskArrayJS(index){
+    tasksArrayData.splice(index, 1);
+    // NOW WE SEND THE DATA ONTO THE JSON
+    saveData(tasksArrayData);
+
+    //Displaying it again
+    displayCards(filteredTasksArrayData, allTasksGrid);
+    editCloseModal();
 }

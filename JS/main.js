@@ -1,6 +1,6 @@
 // Importing Functions
 import { TASKS_KEY} from './storage.js';
-import { saveArrayJS, editTaskArrayJS, tasksArrayData, filteredTasksArrayData, taskArrayFilter, taskArraySearchFilter } from './logic.js';
+import { saveArrayJS, editTaskArrayJS, tasksArrayData, filteredTasksArrayData, taskArrayFilter, taskArraySearchFilter, deleteTaskArrayJS } from './logic.js';
 import { changerToTheAllTasks ,displayCards, closeModal, editCloseModal ,resetForm, removeArrayActive, displayTaskDetails} from './ui.js';
 
 const searchInput = document.getElementById('searchInput')
@@ -13,15 +13,23 @@ const overlay = document.getElementById('formOverlay')
 const editOverlay = document.getElementById('taskEditorOverlay')
 const closeButton = document.getElementById('closeOverlay');
 const editCloseButton = document.getElementById('closeEditOverlay');
+const deleteTaskButton = document.getElementById('deleteButton')
 const formTask = document.getElementById('taskFormId');
 const statusSelector = document.querySelectorAll('.statusButton');
-const cardsArray = document.querySelectorAll(".card");
 
 // Listeners:
 //Add task
 newTaskBtn.addEventListener('click', () => {
     overlay.classList.add('active');
+    resetForm();
 });
+
+//Remove Task:
+deleteTaskButton.addEventListener('click', () => {
+    const index = document.getElementById('hiddenTaskInput').value;
+    deleteTaskArrayJS(index);
+    editCloseModal();
+})
 
 //Edit task
 allTasksGrid.addEventListener('click', (e) => {
@@ -91,8 +99,7 @@ resetButton.addEventListener('click', ()=>{
 const resetButtonEditTask = document.getElementById('resetEditButton');
 
 resetButtonEditTask.addEventListener('click', ()=>{
-    const currentEditForm = document.querySelector('.overlay.active .taskForm')
-    resetForm(currentEditForm);
+    resetForm();
 });
 
 //Getting the form info
