@@ -183,8 +183,6 @@ editTaskForm.addEventListener('submit', (e)=>{
         percentage: Number(percentage)
     }
 
-    console.log(editedTask);
-
     //SUBMITTING THE NEW EDITED TASK TO THE JS ARRAY, SENDING THE DATA TO THE WEB-STORAGE:
     editTaskArrayJS(editedTask, index)
 
