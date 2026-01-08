@@ -435,7 +435,7 @@ button:active {
 .formActions{
     margin-top: 2rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     gap: 2rem;
 }
 
@@ -443,6 +443,7 @@ button:active {
     cursor: pointer;
     padding: 6px 12px;
     border-radius: 16px;
+    font-weight: bold;
 }
 
 .formActions .submitButton{
@@ -450,11 +451,17 @@ button:active {
 }
 
 .formActions button:hover{
-    opacity: 0.9;
+    opacity: 0.7;
 }
 
 .formActions button:active{
-    background-color: var(--color-main-lighter);
+    opacity: 2;
+}
+
+#deleteButton{
+    color: var(--color-red-text);  
+    background-color: var(--color-red-background); 
+    border: 1px solid var(--color-red-border);
 }
 
 #searchInput{

@@ -16,8 +16,8 @@ const editCloseButton = document.getElementById('closeEditOverlay');
 const formTask = document.getElementById('taskFormId');
 const statusSelector = document.querySelectorAll('.statusButton');
 const cardsArray = document.querySelectorAll(".card");
-// Listeners:
 
+// Listeners:
 //Add task
 newTaskBtn.addEventListener('click', () => {
     overlay.classList.add('active');
@@ -85,7 +85,15 @@ document.addEventListener('keydown', (event) => {
 
 //CREATING RESET BUTTON:
 resetButton.addEventListener('click', ()=>{
-    resetForm();
+    const currentForm = document.querySelector('.overlay.active .taskForm')
+    resetForm(currentForm);
+});
+
+const resetButtonEditTask = document.getElementById('resetEditButton');
+
+resetButtonEditTask.addEventListener('click', ()=>{
+    const currentEditForm = document.querySelector('.overlay.active .taskForm')
+    resetForm(currentEditForm);
 });
 
 //Getting the form info
@@ -175,6 +183,8 @@ editTaskForm.addEventListener('submit', (e)=>{
         priority,
         percentage: Number(percentage)
     }
+
+    console.log(editedTask);
 
     //SUBMITTING THE NEW EDITED TASK TO THE JS ARRAY, SENDING THE DATA TO THE WEB-STORAGE:
     editTaskArrayJS(editedTask, index)

@@ -67,9 +67,13 @@ export function editCloseModal(){
 }
 
 // Function to reset the form
-export function resetForm(){
+export function resetForm(currentForm){
+    const inputs = currentForm.querySelectorAll('input, textarea');
+    //Saving hiddenInput!
+    const hiddenIndex = document.getElementById('hiddenTaskInput');
+
     // Resetting Values
-    formTask.reset();
+    currentForm.reset()
 
     // Resetting the custom Buttons
     removeArrayActive(statusSelector);
@@ -78,6 +82,8 @@ export function resetForm(){
     // Adding the defaults
     document.getElementById('inProgressStatus').classList.add('active');
     document.getElementById('mediumPriority').classList.add('active');
+
+    document.getElementById('hiddenTaskInput').value = hiddenIndex;
 }
 
 // Function to remove active class

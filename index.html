@@ -144,7 +144,7 @@
             <div class="modalTask">
                 <span class="material-symbols-outlined" id="closeEditOverlay">close</span>
 
-                <h1>Edit Task</h1>
+                <h1>Task Details</h1>
                 <form name="taskFormName" action="" class="taskForm" id="taskFormEditId">
                     <input type="text" readonly id="hiddenTaskInput">
 
@@ -189,9 +189,13 @@
                     </div>
 
                     <div class="formActions">
-                        <button type="button" class="formButton resetButton" id="resetButton">Reset</button>
+                        <button type="button" class="formButton deleteButton" id="deleteButton">Delete Task</button>
 
-                        <button class="formButton submitButton" id="submitButton">Submit</button>
+                        <div class="formButtons">
+                            <button type="button" class="formButton resetEditButton" id="resetEditButton">Reset</button>
+    
+                            <button class="formButton submitButton" id="submitButton">Confirm</button>
+                        </div>
                     </div>
 
                 </form>
