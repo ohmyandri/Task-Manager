@@ -85,8 +85,7 @@ document.addEventListener('keydown', (event) => {
 
 //CREATING RESET BUTTON:
 resetButton.addEventListener('click', ()=>{
-    const currentForm = document.querySelector('.overlay.active .taskForm')
-    resetForm(currentForm);
+    resetForm();
 });
 
 const resetButtonEditTask = document.getElementById('resetEditButton');

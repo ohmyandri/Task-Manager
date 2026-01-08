@@ -67,10 +67,16 @@ export function editCloseModal(){
 }
 
 // Function to reset the form
-export function resetForm(currentForm){
-    const inputs = currentForm.querySelectorAll('input, textarea');
+export function resetForm(){
+    const currentForm = document.querySelector('.overlay.active .taskForm')
+
+    if (!currentForm) {
+        console.warn("No se pudo resetear: el formulario no existe.");
+        return;
+    }
+
     //Saving hiddenInput!
-    const hiddenIndex = document.getElementById('hiddenTaskInput');
+    const hiddenIndex = document.getElementById('hiddenTaskInput').value;
 
     // Resetting Values
     currentForm.reset()
@@ -80,8 +86,8 @@ export function resetForm(currentForm){
     removeArrayActive(prioritySelector);
 
     // Adding the defaults
-    document.getElementById('inProgressStatus').classList.add('active');
-    document.getElementById('mediumPriority').classList.add('active');
+    currentForm.querySelector('#inProgressStatus').classList.add('active');
+    currentForm.querySelector('.mediumPriority').classList.add('active');
 
     document.getElementById('hiddenTaskInput').value = hiddenIndex;
 }
